@@ -10,10 +10,10 @@ interface AddTaskModalProps {
 }
 
 const TASK_TYPES = [
-    { value: 'habit', label: 'Habit', color: '#4ade80' },
-    { value: 'daily', label: 'Daily', color: '#60a5fa' },
-    { value: 'todo', label: 'To-Do', color: '#facc15' },
-    { value: 'difficult', label: 'Epic Task', color: '#c084fc' },
+    { value: 'habit' as const, label: 'Habit', color: '#4ade80' },
+    { value: 'daily' as const, label: 'Daily', color: '#60a5fa' },
+    { value: 'todo' as const, label: 'To-Do', color: '#facc15' },
+    { value: 'difficult' as const, label: 'Epic Task', color: '#c084fc' },
 ];
 
 const DIFFICULTIES = [
@@ -26,7 +26,7 @@ const DIFFICULTIES = [
 export default function AddTaskModal({ defaultType = 'habit', onClose, onSave }: AddTaskModalProps) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [type, setType] = useState(defaultType);
+    const [type, setType] = useState<'habit' | 'daily' | 'todo' | 'difficult'>(defaultType);
     const [difficulty, setDifficulty] = useState<string>('medium');
 
     const handleSubmit = (e: React.FormEvent) => {

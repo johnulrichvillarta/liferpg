@@ -1,0 +1,400 @@
+.rightColumn {
+    width: 320px;
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
+    height: 100%;
+    overflow: hidden;
+}
+
+.sectionTitle {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* ── Combat Section ───────────────────────────── */
+.combatSection {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.noMonsterState {
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    line-height: 2.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.noMonsterIcon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.noMonsterSub {
+    font-size: 0.55rem;
+    opacity: 0.6;
+    margin-bottom: 20px;
+}
+
+.questBoardBtn {
+    padding: 12px 20px;
+    background: var(--bg-tertiary);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.questBoardBtn:hover {
+    background: rgba(255, 184, 0, 0.1);
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.monsterPanel {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Sprite Area */
+.spriteArea {
+    width: 130px;
+    height: 120px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.spriteArea.defeated {
+    animation: none;
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.rarityGlow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, var(--rarity-color, #9ca3af) 0%, transparent 70%);
+    opacity: 0.15;
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.28;
+        transform: scale(1.15);
+    }
+}
+
+/* Slime body */
+.slimeSprite {
+    width: 72px;
+    height: 72px;
+    border-radius: 40% 40% 20% 20%;
+    position: relative;
+    box-shadow:
+        inset -8px -8px 0px rgba(0, 0, 0, 0.25),
+        inset 8px 8px 0px rgba(255, 255, 255, 0.35);
+}
+
+.slimeSprite::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 14px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 36px 0 0 white;
+}
+
+.slimeSprite::after {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: 18px;
+    width: 5px;
+    height: 5px;
+    background: #111;
+    border-radius: 50%;
+    box-shadow: 36px 0 0 #111;
+}
+
+/* Rarity tints */
+.slimeSprite.common {
+    background-color: #6ee7b7;
+}
+
+.slimeSprite.rare {
+    background-color: #60a5fa;
+}
+
+.slimeSprite.epic {
+    background-color: #c084fc;
+}
+
+.slimeSprite.legendary {
+    background-color: #facc15;
+}
+
+.monsterEmoji {
+    position: absolute;
+    top: -4px;
+    right: 6px;
+    font-size: 1.1rem;
+}
+
+.defeatedBanner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(220, 38, 38, 0.85);
+    color: white;
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Monster meta */
+.monsterMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.monsterName {
+    font-family: var(--font-pixel);
+    font-size: 0.72rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+
+.rarityBadge {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    letter-spacing: 1px;
+}
+
+/* HP Bar */
+.hpSection {
+    width: 100%;
+    position: relative;
+}
+
+.hpHeader {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.hpLabel {
+    color: var(--text-muted);
+}
+
+.hpValue {
+    color: var(--text-secondary);
+}
+
+.hpBarBg {
+    width: 100%;
+    height: 14px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hpBar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hpDanger {
+    animation: flashRed 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes flashRed {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+}
+
+.hpTicks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hpTick {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateX(-50%);
+}
+
+/* Monster micro-stats */
+.monsterStats {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.monsterStat {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+/* ── Adventure Log ────────────────────────────── */
+.logSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.logWindow {
+    flex: 1;
+    padding: 10px 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--bg-primary);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.emptyLog {
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    margin-top: 24px;
+}
+
+.logEntry {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    gap: 6px;
+    align-items: baseline;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.logEntry:last-child {
+    border-bottom: none;
+}
+
+.logIcon {
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.logMessage {
+    color: var(--text-secondary);
+    word-break: break-word;
+}
+
+.logTime {
+    color: var(--text-muted);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.65rem;
+    white-space: nowrap;
+    align-self: flex-start;
+}
+
+/* Type-specific colouring */
+.damage .logMessage {
+    color: var(--color-negative);
+    font-weight: 600;
+}
+
+.reward .logMessage {
+    color: var(--accent-gold);
+}
+
+.system .logMessage {
+    color: var(--color-medium);
+    font-style: italic;
+}
+
+.danger .logMessage {
+    color: #ff5577;
+    font-weight: 700;
+}

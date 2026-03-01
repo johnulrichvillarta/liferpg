@@ -1,0 +1,265 @@
+.leftColumn {
+    width: 300px;
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+}
+
+/* ── Avatar Panel ─────────────────────────────── */
+.avatarPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.avatarWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 8px;
+    background: radial-gradient(ellipse at center, rgba(255, 184, 0, 0.06) 0%, transparent 70%);
+    border-radius: 8px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.username {
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.classBadge {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+}
+
+.levelBadge {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--text-secondary);
+}
+
+.goldBadge {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--accent-gold);
+    background: rgba(255, 184, 0, 0.08);
+    border: 1px solid rgba(255, 184, 0, 0.25);
+    border-radius: 6px;
+    padding: 5px 12px;
+    text-align: center;
+    width: 100%;
+}
+
+/* ── Vitals Bars ──────────────────────────────── */
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.statGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statLabel {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+.statValue {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.barBackground {
+    width: 100%;
+    height: 10px;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.barFill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+.healthFill {
+    background: linear-gradient(90deg, #dc2626, #f87171);
+}
+
+.manaFill {
+    background: linear-gradient(90deg, #1d4ed8, #60a5fa);
+}
+
+.xpFill {
+    background: linear-gradient(90deg, #b45309, var(--accent-gold));
+}
+
+/* ── Attributes ───────────────────────────────── */
+.attributesSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.attrToggle {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+}
+
+.attrToggle:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+.attrGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.attrRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.attrKey {
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    width: 28px;
+    flex-shrink: 0;
+}
+
+.attrBarBg {
+    flex: 1;
+    height: 7px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.attrBarFill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.attrVal {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.7rem;
+    width: 24px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* ── Navigation ───────────────────────────────── */
+.navLinks {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.shopLink {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--accent-gold);
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.shopLink:hover {
+    background: rgba(255, 184, 0, 0.08);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px var(--accent-gold-glow);
+}
+
+.prestigeLink {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    color: #c084fc;
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.prestigeLink:hover {
+    background: rgba(192, 132, 252, 0.08);
+    border-color: #c084fc;
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
+}

@@ -1,0 +1,165 @@
+/* Ascendancy - Core Design System */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* Color Palette - Medieval Dark Theme */
+  --bg-primary: #121016;
+  --bg-secondary: #1a1820;
+  --bg-tertiary: #2a2633;
+  --bg-panel: #221f2b;
+
+  --text-primary: #e6e1e8;
+  --text-secondary: #b3a9b7;
+  --text-muted: #6f6577;
+
+  /* Accent Colors */
+  --accent-gold: #ffb800;
+  --accent-gold-glow: rgba(255, 184, 0, 0.4);
+
+  --accent-mana: #0088ff;
+  --accent-health: #ff3344;
+  --accent-xp: #ffd700;
+
+  /* Difficulty Colors */
+  --color-easy: #4ade80;
+  --color-medium: #60a5fa;
+  --color-hard: #facc15;
+  --color-legendary: #c084fc;
+
+  --color-positive: #10b981;
+  --color-negative: #f43f5e;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Borders & Shadows */
+  --border-radius: 8px;
+  --border-radius-pixel: 0px;
+  /* For chunky pixel aesthetic if desired */
+  --border-color: #3b3545;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 15px var(--accent-gold-glow);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(10, 8, 15, 0.88), rgba(10, 8, 15, 0.88)),
+    url('/background.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  image-rendering: pixelated;
+
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pixel);
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #ffcf40;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  border: none;
+  outline: none;
+}
+
+/* Base Pixel Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Base App Layout Constraints */
+.app-container {
+  display: flex;
+  height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flashDamage {
+  0% {
+    filter: brightness(1) sepia(0) hue-rotate(0) saturate(1);
+  }
+
+  50% {
+    filter: brightness(1.5) sepia(1) hue-rotate(-50deg) saturate(5);
+  }
+
+  100% {
+    filter: brightness(1) sepia(0) hue-rotate(0) saturate(1);
+  }
+}

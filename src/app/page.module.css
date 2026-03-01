@@ -1,0 +1,53 @@
+.loadingScreen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-primary);
+    font-family: var(--font-pixel);
+    color: var(--text-secondary);
+}
+
+.loadingText {
+    animation: flashDamage 1.5s infinite;
+}
+
+.errorScreen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-primary);
+    font-family: var(--font-pixel);
+    color: var(--color-negative);
+}
+
+.toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-panel);
+    border: 2px solid var(--accent-gold);
+    border-radius: 8px;
+    color: var(--accent-gold);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    padding: 14px 24px;
+    z-index: 9999;
+    box-shadow: 0 0 30px var(--accent-gold-glow), 0 8px 24px rgba(0, 0, 0, 0.5);
+    animation: toastIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

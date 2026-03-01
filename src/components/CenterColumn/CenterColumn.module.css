@@ -1,0 +1,181 @@
+.centerColumn {
+    flex: 1;
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.tabNav {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+}
+
+.tabBtn {
+    flex: 1;
+    padding: 15px 10px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tabBtn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.tabBtn.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--accent-gold);
+    background-color: var(--bg-panel);
+}
+
+.difficultTab.active {
+    border-bottom-color: var(--color-legendary);
+    color: var(--color-legendary);
+    text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+}
+
+.taskList {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.emptyState {
+    text-align: center;
+    margin-top: 50px;
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.taskCard {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.taskCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.diffEasy {
+    border-left-color: var(--color-easy);
+}
+
+.diffMedium {
+    border-left-color: var(--color-medium);
+}
+
+.diffHard {
+    border-left-color: var(--color-hard);
+}
+
+.diffLegendary {
+    border-left-color: var(--color-legendary);
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.2);
+}
+
+.taskContent {
+    flex: 1;
+}
+
+.taskTitle {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+.taskDesc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.taskRewards {
+    display: flex;
+    gap: 10px;
+}
+
+.rewardTag {
+    font-size: 0.75rem;
+    background-color: var(--bg-tertiary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.completeBtn {
+    background-color: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    margin-left: 15px;
+}
+
+.completeBtn:hover {
+    background-color: var(--color-positive);
+    border-color: var(--color-positive);
+    transform: scale(1.1) rotate(-10deg);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.swordIcon {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.completeBtn:active .swordIcon {
+    transform: rotate(-45deg) scale(0.8) translateY(5px);
+}
+
+.addTaskBtn {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    border-top: 2px dashed var(--border-color);
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.addTaskBtn:hover {
+    background-color: rgba(255, 184, 0, 0.05);
+    color: var(--accent-gold);
+    border-top-color: var(--accent-gold);
+    border-top-style: solid;
+}

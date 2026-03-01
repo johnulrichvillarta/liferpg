@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String      @id @default(cuid())
+  username       String      @unique
+  email          String      @unique
+  class          String      @default("Warrior")
+  level          Int         @default(1)
+  xp             Int         @default(0)
+  xpToNextLevel  Int         @default(100)
+  health         Int         @default(100)
+  maxHealth      Int         @default(100)
+  mana           Int         @default(50)
+  maxMana        Int         @default(50)
+  gold           Int         @default(0)
+  stamina        Int         @default(100)
+  alignment      String      @default("Neutral")
+  createdAt      DateTime    @default(now())
+  lastActive     DateTime    @default(now())
+
+  // Character Stats (Base)
+  strength       Int         @default(10)
+  intelligence   Int         @default(10)
+  discipline     Int         @default(10)
+  endurance      Int         @default(10)
+  luck           Int         @default(10)
+  charisma       Int         @default(10)
+
+  // Active Quest State
+  activeMonsterId     String?
+  activeMonsterHealth Int?
+  activeMonster       Monster? @relation(fields: [activeMonsterId], references: [id])
+
+  tasks          Task[]
+  customRewards  CustomReward[]
+}
+
+model Task {
+  id                    String    @id @default(cuid())
+  title                 String
+  description           String?
+  type                  String    // habit, daily, todo, difficult
+  difficulty            String    // easy, medium, hard, legendary
+  xpReward              Int       @default(10)
+  goldReward            Int       @default(5)
+  manaReward            Int       @default(0)
+  healthPenaltyIfMissed Int       @default(10)
+  streak                Int       @default(0)
+  createdAt             DateTime  @default(now())
+  completedAt           DateTime?
+
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Monster {
+  id              String      @id @default(cuid())
+  name            String
+  rarity          String      // common, rare, epic, legendary
+  maxHealth       Int
+  attack          Int
+  defense         Int
+  minLevel        Int         @default(1)
+  specialAbility  String?
+  lore            String?
+  rewardTable     String?     // Storing serialized JSON string for rewards
+
+  usersFighting   User[]
+}
+
+model CustomReward {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  cost        Int      @default(50)
+  icon        String   @default("🎁")
+  createdAt   DateTime @default(now())
+}

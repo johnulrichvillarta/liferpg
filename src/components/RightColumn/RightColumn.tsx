@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './RightColumn.module.css';
+import MonsterCanvas from '@/components/MonsterCanvas/MonsterCanvas';
 
 interface Monster {
     id: string;
@@ -54,19 +55,6 @@ const getMonsterIcon = (name: string) => {
     return '👾';
 };
 
-const getMonsterSpriteClass = (name: string) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes('goblin')) return styles.goblinSprite;
-    if (lowerName.includes('wolf')) return styles.wolfSprite;
-    if (lowerName.includes('spider')) return styles.spiderSprite;
-    if (lowerName.includes('golem')) return styles.golemSprite;
-    if (lowerName.includes('wraith')) return styles.wraithSprite;
-    if (lowerName.includes('hydra')) return styles.hydraSprite;
-    if (lowerName.includes('demon')) return styles.demonSprite;
-    if (lowerName.includes('dragon')) return styles.dragonSprite;
-    if (lowerName.includes('titan')) return styles.titanSprite;
-    return styles.slimeSprite;
-};
 
 export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: RightColumnProps) {
 
@@ -91,16 +79,18 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
 
         return (
             <div className={styles.monsterPanel}>
-                {/* Sprite area */}
+                {/* Canvas Sprite area */}
                 <div
                     className={`${styles.spriteArea} ${isDefeated ? styles.defeated : ''}`}
                     style={{ '--rarity-color': rarityColor } as React.CSSProperties}
                 >
                     <div className={styles.rarityGlow} />
-                    <div className={`${getMonsterSpriteClass(monster.name)} ${styles[monster.rarity]}`}>
-                        {monster.name.toLowerCase().includes('spider') && <div className={styles.spiderLegs} />}
-                    </div>
-                    <div className={styles.monsterEmoji}>{getMonsterIcon(monster.name)}</div>
+                    <MonsterCanvas
+                        monster={{ id: monster.id, name: monster.name, rarity: monster.rarity }}
+                        isDefeated={isDefeated}
+                        width={200}
+                        height={160}
+                    />
                     {isDefeated && <div className={styles.defeatedBanner}>DEFEATED</div>}
                 </div>
 

@@ -130,83 +130,162 @@
     }
 }
 
-/* Slime body */
+/* -------- SLIME BODY -------- */
 .slimeSprite {
     width: 72px;
-    height: 72px;
-    border-radius: 40% 40% 20% 20%;
+    height: 60px;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
     position: relative;
-    box-shadow:
-        inset -8px -8px 0px rgba(0, 0, 0, 0.25),
-        inset 8px 8px 0px rgba(255, 255, 255, 0.35);
+    background: currentColor;
+    box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.3), inset 10px 10px 0px rgba(255, 255, 255, 0.4);
+    animation: slimeJiggle 2s ease-in-out infinite;
+    transform-origin: bottom center;
 }
 
+@keyframes slimeJiggle {
+
+    0%,
+    100% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1.05, 0.95);
+    }
+}
+
+/* Internal Nucleus & Glowing Eyes */
 .slimeSprite::before {
     content: '';
     position: absolute;
-    top: 22px;
-    left: 14px;
-    width: 10px;
-    height: 10px;
-    background: white;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 50%;
-    box-shadow: 36px 0 0 white;
+    transform: translate(-50%, -50%);
+    box-shadow:
+        -12px -15px 0 2px #fff,
+        /* Left Eye */
+        12px -15px 0 2px #fff;
+    /* Right Eye */
 }
 
+/* Dripping / Oozing effects */
 .slimeSprite::after {
     content: '';
     position: absolute;
-    top: 26px;
-    left: 18px;
-    width: 5px;
-    height: 5px;
-    background: #111;
+    bottom: -5px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    box-shadow: 36px 0 0 #111;
+    background: currentColor;
+    box-shadow:
+        20px 2px 0 4px currentColor,
+        40px -2px 0 2px currentColor;
 }
 
-/* Goblin Body */
+/* -------- GOBLIN BODY -------- */
 .goblinSprite {
-    width: 60px;
-    height: 70px;
-    border-radius: 30% 30% 10% 10%;
+    width: 50px;
+    height: 65px;
+    border-radius: 40% 40% 10% 10%;
     position: relative;
-    box-shadow: inset -6px -6px 0px rgba(0, 0, 0, 0.3);
+    background: currentColor;
+    box-shadow: inset -8px -8px 0px rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
 }
 
+/* Long Asymmetrical Ears & Large Nose */
+.goblinSprite::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -25px;
+    width: 25px;
+    height: 12px;
+    background: inherit;
+    border-radius: 50% 0 0 50%;
+    transform: rotate(15deg);
+    box-shadow:
+        80px 15px 0 0px var(--rarity-color),
+        /* Right Ear (lower, rotated by shadow offset illusions) */
+        30px 20px 0 2px var(--rarity-color);
+    /* Nose */
+}
+
+/* Ragged Hood/Collar & Glowing Eyes */
 .goblinSprite::after {
     content: '';
     position: absolute;
-    top: 15px;
-    left: -10px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 20px solid var(--rarity-color);
-    filter: brightness(0.8);
-    box-shadow: 78px 0 0 var(--rarity-color);
+    top: 25px;
+    left: 10px;
+    width: 6px;
+    height: 6px;
+    background: #facc15;
+    /* Glowing yellow eye */
+    border-radius: 50%;
+    box-shadow:
+        20px 0 0 0 #facc15,
+        /* Second eye */
+        -15px 30px 0 5px rgba(0, 0, 0, 0.6),
+        /* Collar left */
+        25px 30px 0 5px rgba(0, 0, 0, 0.6);
+    /* Collar right */
 }
 
-/* Wolf Body */
+/* -------- WOLF BODY -------- */
 .wolfSprite {
-    width: 80px;
-    height: 50px;
-    border-radius: 10px 40% 10% 10px;
+    width: 75px;
+    height: 40px;
+    border-radius: 20px 40% 10px 10px;
     position: relative;
-    box-shadow: inset -5px -5px 0px rgba(0, 0, 0, 0.3);
+    background: currentColor;
+    box-shadow: inset -5px -10px 0px rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
 }
 
+/* Fluffy Tail & Legs */
 .wolfSprite::before {
     content: '';
     position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 30px;
+    height: 25px;
+    background: inherit;
+    border-radius: 50% 50% 50% 10%;
+    transform: rotate(30deg);
+    box-shadow:
+        -55px 40px 0 -5px var(--rarity-color),
+        /* Front Leg */
+        -35px 40px 0 -5px var(--rarity-color),
+        /* Back Leg 1 */
+        -25px 42px 0 -6px var(--rarity-color);
+    /* Back Leg 2 */
+}
+
+/* Snout, Ears & Glowing Angry Eye */
+.wolfSprite::after {
+    content: '';
+    position: absolute;
     top: -15px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid currentColor;
+    left: 5px;
+    width: 12px;
+    height: 18px;
+    background: inherit;
+    border-radius: 50% 50% 0 0;
+    /* Near Ear */
+    transform: rotate(-15deg);
+    box-shadow:
+        15px 5px 0 -2px var(--rarity-color),
+        /* Far Ear */
+        -15px 25px 0 2px var(--rarity-color),
+        /* Snout */
+        -8px 25px 0 -4px #dc2626;
+    /* Glowing Red Eye */
 }
 
 /* Spider Body */
@@ -294,120 +373,314 @@
     transform: rotate(-15deg);
 }
 
-/* Golem Body */
+/* -------- GOLEM BODY -------- */
 .golemSprite {
-    width: 70px;
-    height: 80px;
-    border-radius: 10px;
+    width: 50px;
+    height: 60px;
     position: relative;
-    box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.5), inset 10px 10px 0px rgba(255, 255, 255, 0.2);
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    background: currentColor;
+    clip-path: polygon(15% 0%, 85% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
+    box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
 }
 
-/* Wraith Body */
+/* Floating Segmented Shoulders & Arms */
+.golemSprite::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -25px;
+    width: 20px;
+    height: 30px;
+    background: inherit;
+    clip-path: polygon(0% 0%, 100% 20%, 80% 100%, 10% 80%);
+    box-shadow:
+        75px 10px 0 0 var(--rarity-color),
+        /* Right Shoulder */
+        5px 40px 0 -2px var(--rarity-color),
+        /* Left Fist */
+        70px 35px 0 2px var(--rarity-color);
+    /* Right Fist */
+}
+
+/* Glowing Runic Core & Eye Slit */
+.golemSprite::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 20px;
+    height: 4px;
+    background: #60a5fa;
+    /* Core glow base */
+    box-shadow:
+        0 0 10px #60a5fa,
+        0 25px 0 2px #60a5fa,
+        /* Chest Rune */
+        0 25px 15px 5px #60a5fa;
+}
+
+/* -------- WRAITH BODY -------- */
 .wraithSprite {
-    width: 60px;
-    height: 90px;
+    width: 45px;
+    height: 70px;
     border-radius: 50% 50% 0 0;
     position: relative;
-    box-shadow: inset 0 -20px 20px -10px rgba(0, 0, 0, 0.8);
-    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    background: currentColor;
+    box-shadow: inset -5px -10px 10px rgba(0, 0, 0, 0.8);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    animation: float 4s ease-in-out infinite, etherealFade 2s alternate infinite;
 }
 
-/* Hydra Body */
-.hydraSprite {
-    width: 60px;
+@keyframes etherealFade {
+    0% {
+        filter: drop-shadow(0 0 5px currentColor);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 15px currentColor) brightness(1.2);
+    }
+}
+
+/* Hooded Cowl & Glowing Eyes */
+.wraithSprite::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        15px 0 0 #fff,
+        /* Second Eye */
+        7px -5px 0 8px rgba(0, 0, 0, 0.8);
+    /* Deep Cowl Shadow */
+}
+
+/* Flowing Tattered Sleeves */
+.wraithSprite::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: 25px;
     height: 50px;
+    border-radius: 0 0 50% 50%;
+    background: inherit;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    transform: rotate(20deg);
+    box-shadow: 65px -15px 0 5px var(--rarity-color);
+    /* Right Sleeve */
+}
+
+/* -------- HYDRA BODY -------- */
+.hydraSprite {
+    width: 50px;
+    height: 40px;
     border-radius: 50% 50% 10% 10%;
     position: relative;
+    background: currentColor;
+    box-shadow: inset -8px -8px 0 rgba(0, 0, 0, 0.4);
     margin-top: 30px;
 }
 
-.hydraSprite::before,
+/* Three Serpentine Necks */
+.hydraSprite::before {
+    content: '';
+    position: absolute;
+    bottom: 80%;
+    left: 15px;
+    width: 14px;
+    height: 35px;
+    background: inherit;
+    border-radius: 10px 10px 0 0;
+    box-shadow:
+        -25px 10px 0 -2px var(--rarity-color),
+        /* Left Neck */
+        25px 10px 0 2px var(--rarity-color);
+    /* Right Neck */
+}
+
+/* Three Sets of Glowing Eyes & Maws */
 .hydraSprite::after {
     content: '';
     position: absolute;
-    bottom: 100%;
-    width: 20px;
-    height: 40px;
-    background: inherit;
-    border-radius: 10px 10px 0 0;
+    bottom: 150%;
+    left: 17px;
+    width: 4px;
+    height: 3px;
+    background: #dc2626;
+    /* Red eyes */
+    border-radius: 50%;
+    box-shadow:
+        6px 0 0 0 #dc2626,
+        /* Center Right Eye */
+        3px 6px 0 1px rgba(0, 0, 0, 0.6),
+        /* Center Maw */
+
+        -23px 10px 0 0 #dc2626,
+        /* Left Left Eye */
+        -17px 10px 0 0 #dc2626,
+        /* Left Right Eye */
+        -20px 16px 0 1px rgba(0, 0, 0, 0.6),
+        /* Left Maw */
+
+        28px 10px 0 0 #dc2626,
+        /* Right Left Eye */
+        34px 10px 0 0 #dc2626,
+        /* Right Right Eye */
+        31px 16px 0 1px rgba(0, 0, 0, 0.6);
+    /* Right Maw */
 }
 
-.hydraSprite::before {
-    left: 0;
-    transform: rotate(-20deg);
-}
-
-.hydraSprite::after {
-    right: 0;
-    transform: rotate(20deg);
-}
-
-/* Demon Body */
+/* -------- DEMON BODY -------- */
 .demonSprite {
-    width: 60px;
-    height: 75px;
-    border-radius: 20%;
+    width: 45px;
+    height: 70px;
+    border-radius: 30% 30% 10% 10%;
     position: relative;
-    box-shadow: inset -8px -8px 0px rgba(0, 0, 0, 0.4);
+    background: currentColor;
+    box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
 }
 
+/* Bat Wings & Tail */
 .demonSprite::before {
     content: '';
     position: absolute;
+    top: 5px;
+    left: -35px;
+    width: 40px;
+    height: 60px;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 50% 80%, 30% 100%, 20% 60%);
+    box-shadow:
+        75px 0 0 0 var(--rarity-color),
+        /* Right Wing */
+        50px 75px 0 -15px var(--rarity-color);
+    /* Tail Base */
+    z-index: -1;
+}
+
+/* Curving Horns, Glowing Eyes & Tail Spike */
+.demonSprite::after {
+    content: '';
+    position: absolute;
     top: -15px;
-    left: 10px;
+    left: 0px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 25px solid #fff;
+    border-bottom: 25px solid var(--rarity-color);
     filter: brightness(0.6);
-    box-shadow: 24px 0 0 #fff;
+    box-shadow:
+        28px 0 0 0 var(--rarity-color),
+        /* Right Horn */
+        10px 25px 0 -4px #dc2626,
+        /* Left Eye */
+        18px 25px 0 -4px #dc2626,
+        /* Right Eye */
+
+        15px 95px 0 -5px var(--rarity-color);
+    /* Tail Spike */
 }
 
-/* Dragon Body */
+/* -------- DRAGON BODY -------- */
 .dragonSprite {
-    width: 80px;
-    height: 60px;
-    border-radius: 50% 20% 20% 50%;
+    width: 55px;
+    height: 50px;
+    border-radius: 50% 10% 40% 50%;
     position: relative;
-    box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.3);
+    background: currentColor;
+    box-shadow: inset -8px -15px 0 rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
 }
 
+/* Massive Leathery Wing & Spiky Tail */
+.dragonSprite::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    width: 60px;
+    height: 70px;
+    background: inherit;
+    clip-path: polygon(0 40%, 40% 0, 100% 10%, 80% 60%, 100% 100%, 60% 80%, 40% 100%);
+    box-shadow: -40px 65px 0 -20px var(--rarity-color);
+    /* Spiky Tail Extension */
+    z-index: -1;
+}
+
+/* Elongated Snout, Jaw, Eye & Horns */
 .dragonSprite::after {
     content: '';
     position: absolute;
-    top: -20px;
-    left: 10px;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 30px solid currentColor;
-    filter: brightness(0.7);
+    top: -5px;
+    left: -20px;
+    width: 30px;
+    height: 12px;
+    background: inherit;
+    border-radius: 10px 0 0 10px;
+    box-shadow:
+        5px 12px 0 -2px var(--rarity-color),
+        /* Lower Jaw */
+        15px 8px 0 -4px #facc15,
+        /* Glowing Golden Eye */
+        30px -15px 0 -4px var(--rarity-color),
+        /* Horn 1 */
+        35px -10px 0 -4px var(--rarity-color);
+    /* Horn 2 */
 }
 
-/* Titan Body */
+/* -------- TITAN BODY -------- */
 .titanSprite {
-    width: 90px;
-    height: 90px;
-    border-radius: 5px;
+    width: 80px;
+    height: 100px;
+    border-radius: 5px 5px 15px 15px;
     position: relative;
-    box-shadow: inset -15px -15px 0px rgba(0, 0, 0, 0.6), inset 5px 5px 0px rgba(255, 255, 255, 0.1);
+    background: currentColor;
+    box-shadow:
+        inset -15px -15px 0 rgba(0, 0, 0, 0.6),
+        inset 10px 10px 0 rgba(255, 255, 255, 0.1);
+    margin-top: -10px;
+    /* Oversized, clipping the top boundary slightly */
 }
 
+/* Monolithic Shoulders & Faceplate */
 .titanSprite::before {
     content: '';
     position: absolute;
-    top: 20px;
+    top: -15px;
+    left: -10px;
+    width: 100px;
+    height: 25px;
+    background: inherit;
+    border-radius: 10px;
+    box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Enormous Cyclops Eye & Atmospheric Dust */
+.titanSprite::after {
+    content: '';
+    position: absolute;
+    top: -5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 10px;
-    background: #fff;
-    box-shadow: 0 0 10px #fff;
+    width: 30px;
+    height: 8px;
+    background: #facc15;
+    border-radius: 4px;
+    box-shadow:
+        0 0 15px #facc15,
+        0 40px 0 -2px rgba(255, 255, 255, 0.1),
+        /* Dust Particle 1 */
+        -20px 60px 0 -2px rgba(255, 255, 255, 0.2),
+        /* Dust Particle 2 */
+        25px 70px 0 -1px rgba(255, 255, 255, 0.15);
+    /* Dust Particle 3 */
 }
 
 /* Rarity tints */

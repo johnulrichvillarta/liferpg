@@ -165,21 +165,242 @@
     box-shadow: 36px 0 0 #111;
 }
 
+/* Goblin Body */
+.goblinSprite {
+    width: 60px;
+    height: 70px;
+    border-radius: 30% 30% 10% 10%;
+    position: relative;
+    box-shadow: inset -6px -6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.goblinSprite::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid var(--rarity-color);
+    filter: brightness(0.8);
+    box-shadow: 78px 0 0 var(--rarity-color);
+}
+
+/* Wolf Body */
+.wolfSprite {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px 40% 10% 10px;
+    position: relative;
+    box-shadow: inset -5px -5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.wolfSprite::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid currentColor;
+}
+
+/* Spider Body */
+.spiderSprite {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset -8px -8px 0px rgba(0, 0, 0, 0.4), -25px 0 0 -10px currentColor;
+    /* Head */
+}
+
+.spiderSprite::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    width: 90px;
+    height: 30px;
+    border-top: 4px solid #111;
+    border-radius: 50%;
+}
+
+/* Golem Body */
+.golemSprite {
+    width: 70px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.5), inset 10px 10px 0px rgba(255, 255, 255, 0.2);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+/* Wraith Body */
+.wraithSprite {
+    width: 60px;
+    height: 90px;
+    border-radius: 50% 50% 0 0;
+    position: relative;
+    box-shadow: inset 0 -20px 20px -10px rgba(0, 0, 0, 0.8);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+/* Hydra Body */
+.hydraSprite {
+    width: 60px;
+    height: 50px;
+    border-radius: 50% 50% 10% 10%;
+    position: relative;
+    margin-top: 30px;
+}
+
+.hydraSprite::before,
+.hydraSprite::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    width: 20px;
+    height: 40px;
+    background: inherit;
+    border-radius: 10px 10px 0 0;
+}
+
+.hydraSprite::before {
+    left: 0;
+    transform: rotate(-20deg);
+}
+
+.hydraSprite::after {
+    right: 0;
+    transform: rotate(20deg);
+}
+
+/* Demon Body */
+.demonSprite {
+    width: 60px;
+    height: 75px;
+    border-radius: 20%;
+    position: relative;
+    box-shadow: inset -8px -8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.demonSprite::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 25px solid #fff;
+    filter: brightness(0.6);
+    box-shadow: 24px 0 0 #fff;
+}
+
+/* Dragon Body */
+.dragonSprite {
+    width: 80px;
+    height: 60px;
+    border-radius: 50% 20% 20% 50%;
+    position: relative;
+    box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.dragonSprite::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid currentColor;
+    filter: brightness(0.7);
+}
+
+/* Titan Body */
+.titanSprite {
+    width: 90px;
+    height: 90px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: inset -15px -15px 0px rgba(0, 0, 0, 0.6), inset 5px 5px 0px rgba(255, 255, 255, 0.1);
+}
+
+.titanSprite::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+}
+
 /* Rarity tints */
-.slimeSprite.common {
+.slimeSprite.common,
+.goblinSprite.common,
+.wolfSprite.common,
+.spiderSprite.common,
+.golemSprite.common,
+.wraithSprite.common,
+.hydraSprite.common,
+.demonSprite.common,
+.dragonSprite.common,
+.titanSprite.common {
     background-color: #6ee7b7;
+    color: #6ee7b7;
 }
 
-.slimeSprite.rare {
+.slimeSprite.rare,
+.goblinSprite.rare,
+.wolfSprite.rare,
+.spiderSprite.rare,
+.golemSprite.rare,
+.wraithSprite.rare,
+.hydraSprite.rare,
+.demonSprite.rare,
+.dragonSprite.rare,
+.titanSprite.rare {
     background-color: #60a5fa;
+    color: #60a5fa;
 }
 
-.slimeSprite.epic {
+.slimeSprite.epic,
+.goblinSprite.epic,
+.wolfSprite.epic,
+.spiderSprite.epic,
+.golemSprite.epic,
+.wraithSprite.epic,
+.hydraSprite.epic,
+.demonSprite.epic,
+.dragonSprite.epic,
+.titanSprite.epic {
     background-color: #c084fc;
+    color: #c084fc;
 }
 
-.slimeSprite.legendary {
+.slimeSprite.legendary,
+.goblinSprite.legendary,
+.wolfSprite.legendary,
+.spiderSprite.legendary,
+.golemSprite.legendary,
+.wraithSprite.legendary,
+.hydraSprite.legendary,
+.demonSprite.legendary,
+.dragonSprite.legendary,
+.titanSprite.legendary {
     background-color: #facc15;
+    color: #facc15;
 }
 
 .monsterEmoji {

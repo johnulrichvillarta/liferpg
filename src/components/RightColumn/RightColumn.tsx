@@ -54,6 +54,20 @@ const getMonsterIcon = (name: string) => {
     return '👾';
 };
 
+const getMonsterSpriteClass = (name: string) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('goblin')) return styles.goblinSprite;
+    if (lowerName.includes('wolf')) return styles.wolfSprite;
+    if (lowerName.includes('spider')) return styles.spiderSprite;
+    if (lowerName.includes('golem')) return styles.golemSprite;
+    if (lowerName.includes('wraith')) return styles.wraithSprite;
+    if (lowerName.includes('hydra')) return styles.hydraSprite;
+    if (lowerName.includes('demon')) return styles.demonSprite;
+    if (lowerName.includes('dragon')) return styles.dragonSprite;
+    if (lowerName.includes('titan')) return styles.titanSprite;
+    return styles.slimeSprite;
+};
+
 export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: RightColumnProps) {
 
     const renderMonster = () => {
@@ -83,7 +97,7 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
                     style={{ '--rarity-color': rarityColor } as React.CSSProperties}
                 >
                     <div className={styles.rarityGlow} />
-                    <div className={`${styles.slimeSprite} ${styles[monster.rarity]}`} />
+                    <div className={`${getMonsterSpriteClass(monster.name)} ${styles[monster.rarity]}`} />
                     <div className={styles.monsterEmoji}>{getMonsterIcon(monster.name)}</div>
                     {isDefeated && <div className={styles.defeatedBanner}>DEFEATED</div>}
                 </div>

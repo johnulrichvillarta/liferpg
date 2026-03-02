@@ -97,7 +97,9 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
                     style={{ '--rarity-color': rarityColor } as React.CSSProperties}
                 >
                     <div className={styles.rarityGlow} />
-                    <div className={`${getMonsterSpriteClass(monster.name)} ${styles[monster.rarity]}`} />
+                    <div className={`${getMonsterSpriteClass(monster.name)} ${styles[monster.rarity]}`}>
+                        {monster.name.toLowerCase().includes('spider') && <div className={styles.spiderLegs} />}
+                    </div>
                     <div className={styles.monsterEmoji}>{getMonsterIcon(monster.name)}</div>
                     {isDefeated && <div className={styles.defeatedBanner}>DEFEATED</div>}
                 </div>

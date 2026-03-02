@@ -211,23 +211,87 @@
 
 /* Spider Body */
 .spiderSprite {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 36px;
+    height: 44px;
+    border-radius: 40% 40% 50% 50%;
     position: relative;
-    box-shadow: inset -8px -8px 0px rgba(0, 0, 0, 0.4), -25px 0 0 -10px currentColor;
-    /* Head */
+    background: currentColor;
+    margin-top: 15px;
+    transform: perspective(200px) rotateX(20deg);
 }
 
+/* Cephalothorax (head section) & Mandibles */
+.spiderSprite::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 8px;
+    width: 20px;
+    height: 18px;
+    border-radius: 50%;
+    background: inherit;
+    box-shadow:
+        -4px -2px 0px -2px #111,
+        4px -2px 0px -2px #111;
+    /* Mandibles */
+}
+
+/* Internal Abdomen Marking & Glowing Eyes */
 .spiderSprite::after {
     content: '';
     position: absolute;
-    top: 10px;
-    left: -20px;
-    width: 90px;
-    height: 30px;
-    border-top: 4px solid #111;
+    top: -6px;
+    left: 12px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        8px 0 0 #fff,
+        /* Second Eye */
+        4px 25px 0 6px rgba(0, 0, 0, 0.5);
+    /* Abdomen Mark */
+}
+
+/* The 8 Legs (Using complex box-shadows on two pseudo elements for rendering) */
+.spiderLegs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.spiderLegs::before,
+.spiderLegs::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 3px;
+    background: transparent;
+    border-radius: 2px;
+}
+
+/* Left Legs Array */
+.spiderLegs::before {
+    top: 5px;
+    left: -12px;
+    box-shadow:
+        0 0 0 1px currentColor,
+        -5px 10px 0 0 currentColor,
+        -8px 22px 0 0 currentColor,
+        -5px 34px 0 0 currentColor;
+    transform: rotate(15deg);
+}
+
+/* Right Legs Array */
+.spiderLegs::after {
+    top: 5px;
+    right: -12px;
+    box-shadow:
+        0 0 0 1px currentColor,
+        5px 10px 0 0 currentColor,
+        8px 22px 0 0 currentColor,
+        5px 34px 0 0 currentColor;
+    transform: rotate(-15deg);
 }
 
 /* Golem Body */

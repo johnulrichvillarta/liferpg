@@ -20,6 +20,21 @@ interface QuestBoardModalProps {
     onSelectQuest: (monsterId: string) => void;
 }
 
+const getMonsterIcon = (name: string) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('slime')) return '🦠';
+    if (lowerName.includes('goblin')) return '👺';
+    if (lowerName.includes('wolf')) return '🐺';
+    if (lowerName.includes('spider')) return '🕷️';
+    if (lowerName.includes('golem')) return '🪨';
+    if (lowerName.includes('wraith')) return '👻';
+    if (lowerName.includes('hydra')) return '🐍';
+    if (lowerName.includes('demon')) return '👿';
+    if (lowerName.includes('dragon')) return '🐉';
+    if (lowerName.includes('titan')) return '🗿';
+    return '👾';
+};
+
 const RARITY_COLORS: Record<string, string> = {
     common: '#6ee7b7',
     rare: '#60a5fa',
@@ -74,7 +89,9 @@ export default function QuestBoardModal({ userId, onClose, onSelectQuest }: Ques
                                         style={{ '--card-color': isLocked ? '#555' : rColor } as React.CSSProperties}
                                     >
                                         <div className={styles.cardHeader}>
-                                            <h3 className={styles.monsterName}>{isLocked ? '??? (Locked)' : monster.name}</h3>
+                                            <h3 className={styles.monsterName}>
+                                                {isLocked ? '❓ ??? (Locked)' : `${getMonsterIcon(monster.name)} ${monster.name}`}
+                                            </h3>
                                             {!isLocked && (
                                                 <span className={styles.rarityBadge} style={{ color: rColor, borderColor: rColor }}>
                                                     {monster.rarity.toUpperCase()}

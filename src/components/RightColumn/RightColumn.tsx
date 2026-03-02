@@ -32,18 +32,26 @@ const RARITY_COLORS: Record<string, string> = {
     legendary: '#facc15',
 };
 
-const MONSTER_EMOJIS: Record<string, string> = {
-    common: '🟢',
-    rare: '🔵',
-    epic: '🟣',
-    legendary: '🌟',
-};
-
 const LOG_ICONS: Record<string, string> = {
     damage: '⚔️',
     reward: '✨',
     system: '📜',
     danger: '💀',
+};
+
+const getMonsterIcon = (name: string) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('slime')) return '🦠';
+    if (lowerName.includes('goblin')) return '👺';
+    if (lowerName.includes('wolf')) return '🐺';
+    if (lowerName.includes('spider')) return '🕷️';
+    if (lowerName.includes('golem')) return '🪨';
+    if (lowerName.includes('wraith')) return '👻';
+    if (lowerName.includes('hydra')) return '🐍';
+    if (lowerName.includes('demon')) return '👿';
+    if (lowerName.includes('dragon')) return '🐉';
+    if (lowerName.includes('titan')) return '🗿';
+    return '👾';
 };
 
 export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: RightColumnProps) {
@@ -76,7 +84,7 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
                 >
                     <div className={styles.rarityGlow} />
                     <div className={`${styles.slimeSprite} ${styles[monster.rarity]}`} />
-                    <div className={styles.monsterEmoji}>{MONSTER_EMOJIS[monster.rarity]}</div>
+                    <div className={styles.monsterEmoji}>{getMonsterIcon(monster.name)}</div>
                     {isDefeated && <div className={styles.defeatedBanner}>DEFEATED</div>}
                 </div>
 

@@ -35,6 +35,15 @@ const getMonsterIcon = (name: string) => {
     return '👾';
 };
 
+const getBaseMonsterName = (name: string) => {
+    const lowerName = name.toLowerCase();
+    const archetypes = ['slime', 'goblin', 'wolf', 'spider', 'golem', 'wraith', 'hydra', 'demon', 'dragon', 'titan'];
+    for (const archetype of archetypes) {
+        if (lowerName.includes(archetype)) return archetype;
+    }
+    return 'slime';
+};
+
 const RARITY_COLORS: Record<string, string> = {
     common: '#6ee7b7',
     rare: '#60a5fa',
@@ -91,7 +100,7 @@ export default function QuestBoardModal({ userId, onClose, onSelectQuest }: Ques
                                         <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                             <div style={{ width: 48, height: 48, flexShrink: 0, position: 'relative', borderRadius: '4px', overflow: 'hidden', background: 'rgba(0,0,0,0.2)' }}>
                                                 <img
-                                                    src={isLocked ? '/monsters/placeholder.png' : `/monsters/${monster.name.toLowerCase()}.png`}
+                                                    src={isLocked ? '/monsters/placeholder.png' : `/monsters/${getBaseMonsterName(monster.name)}.png`}
                                                     style={{ width: '100%', height: '100%', objectFit: 'contain', imageRendering: 'pixelated', opacity: isLocked ? 0.3 : 1 }}
                                                     onError={(e) => { e.currentTarget.src = '/monsters/placeholder.png'; }}
                                                     alt={isLocked ? 'Locked Monster' : monster.name}

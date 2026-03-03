@@ -88,15 +88,25 @@ export default function QuestBoardModal({ userId, onClose, onSelectQuest }: Ques
                                         className={`${styles.card} ${isLocked ? styles.cardLocked : ''}`}
                                         style={{ '--card-color': isLocked ? '#555' : rColor } as React.CSSProperties}
                                     >
-                                        <div className={styles.cardHeader}>
-                                            <h3 className={styles.monsterName}>
-                                                {isLocked ? '❓ ??? (Locked)' : `${getMonsterIcon(monster.name)} ${monster.name}`}
-                                            </h3>
-                                            {!isLocked && (
-                                                <span className={styles.rarityBadge} style={{ color: rColor, borderColor: rColor }}>
-                                                    {monster.rarity.toUpperCase()}
-                                                </span>
-                                            )}
+                                        <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                            <div style={{ width: 48, height: 48, flexShrink: 0, position: 'relative', borderRadius: '4px', overflow: 'hidden', background: 'rgba(0,0,0,0.2)' }}>
+                                                <img
+                                                    src={isLocked ? '/monsters/placeholder.png' : `/monsters/${monster.name.toLowerCase()}.png`}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', imageRendering: 'pixelated', opacity: isLocked ? 0.3 : 1 }}
+                                                    onError={(e) => { e.currentTarget.src = '/monsters/placeholder.png'; }}
+                                                    alt={isLocked ? 'Locked Monster' : monster.name}
+                                                />
+                                            </div>
+                                            <div style={{ flex: 1 }}>
+                                                <h3 className={styles.monsterName} style={{ marginBottom: 4 }}>
+                                                    {isLocked ? '❓ ??? (Locked)' : monster.name}
+                                                </h3>
+                                                {!isLocked && (
+                                                    <span className={styles.rarityBadge} style={{ color: rColor, borderColor: rColor }}>
+                                                        {monster.rarity.toUpperCase()}
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
 
                                         <div className={styles.monsterLore}>

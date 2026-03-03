@@ -38,6 +38,13 @@ model User {
   activeMonsterHealth Int?
   activeMonster       Monster? @relation(fields: [activeMonsterId], references: [id])
 
+  // Equipment System
+  equippedHead   String?
+  equippedBody   String?
+  equippedLegs   String?
+  equippedWeapon String?
+  inventory      String[] @default([])
+
   tasks          Task[]
   customRewards  CustomReward[]
 }

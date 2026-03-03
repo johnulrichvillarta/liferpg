@@ -63,6 +63,15 @@ export async function POST(request: Request) {
         break;
     }
 
+    // Assign Starter Equipment
+    const c = userClass.toLowerCase();
+    const starterGear = [
+      `eq_${c}_head`,
+      `eq_${c}_body`,
+      `eq_${c}_legs`,
+      `eq_${c}_weapon`
+    ];
+
     const maxHealth = 50 + (endurance * 5);
     const maxMana = 30 + (intelligence * 4);
 
@@ -80,7 +89,12 @@ export async function POST(request: Request) {
         discipline,
         endurance,
         luck,
-        charisma
+        charisma,
+        equippedHead: starterGear[0],
+        equippedBody: starterGear[1],
+        equippedLegs: starterGear[2],
+        equippedWeapon: starterGear[3],
+        inventory: starterGear
       },
     });
 

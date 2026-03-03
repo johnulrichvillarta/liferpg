@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styles from './RightColumn.module.css';
-import MonsterCanvas from '@/components/MonsterCanvas/MonsterCanvas';
 
 interface Monster {
     id: string;
@@ -79,19 +78,28 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
 
         return (
             <div className={styles.monsterPanel}>
-                {/* Canvas Sprite area */}
+                {/* DALL-E Asset Area */}
                 <div
                     className={`${styles.spriteArea} ${isDefeated ? styles.defeated : ''}`}
                     style={{ '--rarity-color': rarityColor } as React.CSSProperties}
                 >
                     <div className={styles.rarityGlow} />
-                    <MonsterCanvas
-                        monster={{ id: monster.id, name: monster.name, rarity: monster.rarity }}
-                        isDefeated={isDefeated}
-                        width={200}
-                        height={160}
-                    />
-                    {isDefeated && <div className={styles.defeatedBanner}>DEFEATED</div>}
+                    <div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 2 }}>
+                        <img
+                            src={`/monsters/${monster.name.toLowerCase()}.png`}
+                            alt={monster.name}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                imageRendering: 'pixelated',
+                                filter: isDefeated ? 'grayscale(1) brightness(0.5)' : 'none',
+                                transition: 'all 0.3s ease'
+                            }}
+                            onError={(e) => { e.currentTarget.src = '/monsters/placeholder.png'; }}
+                        />
+                    </div>
+                    {isDefeated && <div className={styles.defeatedBanner} style={{ zIndex: 10 }}>DEFEATED</div>}
                 </div>
 
                 {/* Name + rarity */}

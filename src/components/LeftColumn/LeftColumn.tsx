@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import styles from './LeftColumn.module.css';
 import PixelAvatar from '@/components/PixelAvatar/PixelAvatar';
+import { calculateEquipmentBonus, EQUIPMENT_DATABASE } from '@/lib/equipment';
 
 interface User {
     username: string;
@@ -23,6 +25,12 @@ interface User {
     endurance?: number;
     luck?: number;
     charisma?: number;
+    // Equipment
+    equippedHead?: string | null;
+    equippedBody?: string | null;
+    equippedLegs?: string | null;
+    equippedWeapon?: string | null;
+    inventory?: string[];
 }
 
 interface LeftColumnProps {
@@ -50,12 +58,23 @@ export default function LeftColumn({ user, onOpenShop }: LeftColumnProps) {
         }
     };
 
-    const hpPercent = Math.max(0, Math.min(100, (user.health / user.maxHealth) * 100));
+    const { bonusHealth, bonusAttack } = calculateEquipmentBonus(
+        user.equippedHead ?? null,
+        user.equippedBody ?? null,
+        user.equippedLegs ?? null,
+        user.equippedWeapon ?? null
+    );
+
+    const effectiveHealth = user.health + bonusHealth;
+    const effectiveMaxHealth = user.maxHealth + bonusHealth;
+
+    const hpPercent = Math.max(0, Math.min(100, (effectiveHealth / effectiveMaxHealth) * 100));
     const mpPercent = Math.max(0, Math.min(100, (user.mana / user.maxMana) * 100));
     const xpPercent = Math.max(0, Math.min(100, (user.xp / user.xpToNextLevel) * 100));
     const classColor = CLASS_COLORS[user.class] ?? '#facc15';
 
     const attrs = [
+        { key: 'ATK', value: (user.strength ?? 10) + bonusAttack, color: '#ef4444' }, // Added derived Attack
         { key: 'STR', value: user.strength ?? 10, color: '#f87171' },
         { key: 'INT', value: user.intelligence ?? 10, color: '#818cf8' },
         { key: 'DIS', value: user.discipline ?? 10, color: '#60a5fa' },
@@ -83,12 +102,41 @@ export default function LeftColumn({ user, onOpenShop }: LeftColumnProps) {
                 </div>
             </div>
 
+            {/* Equipment Panel */}
+            <div className={styles.equipmentPanel}>
+                <h3 className={styles.equipmentTitle}>EQUIPMENT</h3>
+                <div className={styles.equipmentGrid}>
+                    {['head', 'body', 'legs', 'weapon'].map(slot => {
+                        let itemId = null;
+                        if (slot === 'head') itemId = user.equippedHead;
+                        if (slot === 'body') itemId = user.equippedBody;
+                        if (slot === 'legs') itemId = user.equippedLegs;
+                        if (slot === 'weapon') itemId = user.equippedWeapon;
+
+                        const item = itemId ? EQUIPMENT_DATABASE[itemId] : null;
+
+                        return (
+                            <div key={slot} className={styles.equipmentSlot} title={item?.name || `Empty ${slot}`}>
+                                {item ? (
+                                    <Image src={item.iconUrl} alt={item.name} fill className={styles.equipmentImage} sizes="40px" />
+                                ) : (
+                                    <span className={styles.emptySlot}>{slot}</span>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
             {/* Vitals Bars */}
             <div className={styles.statsContainer}>
                 <div className={styles.statGroup}>
                     <div className={styles.statHeader}>
                         <span className={styles.statLabel}>❤️ HP</span>
-                        <span className={styles.statValue}>{user.health} / {user.maxHealth}</span>
+                        <span className={styles.statValue}>
+                            {effectiveHealth} / {effectiveMaxHealth}
+                            {bonusHealth > 0 && <span className={styles.bonusText}> (+{bonusHealth})</span>}
+                        </span>
                     </div>
                     <div className={styles.barBackground}>
                         <div className={`${styles.barFill} ${styles.healthFill}`} style={{ width: `${hpPercent}%` }} />

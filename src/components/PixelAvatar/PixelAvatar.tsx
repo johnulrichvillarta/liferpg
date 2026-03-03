@@ -18,7 +18,7 @@ const CLASS_PALETTES: Record<string, { primary: string; secondary: string; accen
 
 export default function PixelAvatar({ userClass, size = 'md' }: PixelAvatarProps) {
     const palette = CLASS_PALETTES[userClass] ?? CLASS_PALETTES['Warrior'];
-    const imagePath = `/avatars/${userClass.toLowerCase()}.png`;
+    const imagePath = `/classes/${userClass.toLowerCase()}.png`;
 
     return (
         <div className={`${styles.avatarWrap} ${styles[size]}`}>

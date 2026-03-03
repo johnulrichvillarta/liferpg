@@ -54,6 +54,14 @@ const getMonsterIcon = (name: string) => {
     return '👾';
 };
 
+const getBaseMonsterName = (name: string) => {
+    const lowerName = name.toLowerCase();
+    const archetypes = ['slime', 'goblin', 'wolf', 'spider', 'golem', 'wraith', 'hydra', 'demon', 'dragon', 'titan'];
+    for (const archetype of archetypes) {
+        if (lowerName.includes(archetype)) return archetype;
+    }
+    return 'slime';
+};
 
 export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: RightColumnProps) {
 
@@ -86,7 +94,7 @@ export default function RightColumn({ monster, combatLog, onOpenQuestBoard }: Ri
                     <div className={styles.rarityGlow} />
                     <div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 2 }}>
                         <img
-                            src={`/monsters/${monster.name.toLowerCase()}.png`}
+                            src={`/monsters/${getBaseMonsterName(monster.name)}.png`}
                             alt={monster.name}
                             style={{
                                 width: '100%',

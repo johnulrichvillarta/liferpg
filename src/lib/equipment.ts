@@ -27,7 +27,7 @@ export const EQUIPMENT_DATABASE: Record<string, EquipmentItem> = {
     'eq_warrior_body': {
         id: 'eq_warrior_body',
         name: 'Iron Chestplate',
-        description: 'Sturdy iron armor.",
+        description: 'Sturdy iron armor.',
         slot: 'body',
         classRestriction: 'Warrior',
         stats: { health: 40 },
@@ -149,21 +149,21 @@ export const EQUIPMENT_DATABASE: Record<string, EquipmentItem> = {
     },
     'eq_paladin_legs': {
         id: 'eq_paladin_legs',
-        name: 'Steel Greaves (Placeholder)',
+        name: 'Steel Greaves',
         description: 'Blessed leg protection.',
         slot: 'legs',
         classRestriction: 'Paladin',
         stats: { health: 25 },
-        iconUrl: '/equipment/placeholder_paladin_legs.png',
+        iconUrl: '/equipment/eq_paladin_legs_1772499196577.png',
     },
     'eq_paladin_weapon': {
         id: 'eq_paladin_weapon',
-        name: 'Holy Sword (Placeholder)',
+        name: 'Holy Sword',
         description: 'A glowing broadsword.',
         slot: 'weapon',
         classRestriction: 'Paladin',
         stats: { attack: 18 },
-        iconUrl: '/equipment/placeholder_paladin_weapon.png',
+        iconUrl: '/equipment/eq_paladin_weapon_1772499210797.png',
     }
 };
 
